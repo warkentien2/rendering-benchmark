@@ -3,7 +3,7 @@ const _ = require("lodash");
 const fs = require("fs");
 
 // Define the path and filename for the output file
-const outputFilePath = "output.txt";
+const outputFilePath = "output-css.txt";
 
 // Load the image
 Jimp.read("Lena.png", (err, image) => {
