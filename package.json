@@ -1,0 +1,15 @@
+{
+  "name": "css-brute-force-image",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Philip Warkentien II",
+  "license": "ISC",
+  "dependencies": {
+    "jimp": "^0.22.7",
+    "lodash": "^4.17.21"
+  }
+}
