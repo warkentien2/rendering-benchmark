@@ -2,7 +2,7 @@ const Jimp = require("jimp");
 const fs = require("fs");
 
 // Define the path and filename for the output file
-const outputFilePath = "output-svg.txt";
+const outputFilePath = "output-inline-css.txt";
 
 // Load the image
 Jimp.read("Lena.png", (err, image) => {
@@ -15,12 +15,6 @@ Jimp.read("Lena.png", (err, image) => {
   // Create a matrix to store the color information of each pixel
   let flatMatrix = [];
 
-  // Set of unique colors
-  let colors;
-
-  // Style map
-  let styleMap;
-
   // Loop through each pixel in the image
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
@@ -29,11 +23,9 @@ Jimp.read("Lena.png", (err, image) => {
 
       // Add the color information to the current row of the matrix
       flatMatrix.push(
-        `<rect x="${x * 2}" y="${y * 2}" fill="#${r
+        `<div style="background:#${r.toString(16).padStart(2, "0")}${g
           .toString(16)
-          .padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b
-          .toString(16)
-          .padStart(2, "0")}" />`
+          .padStart(2, "0")}${b.toString(16).padStart(2, "0")}"></div>`
       );
     }
   }
@@ -42,11 +34,7 @@ Jimp.read("Lena.png", (err, image) => {
   const outputStream = fs.createWriteStream(outputFilePath);
 
   // Create SVG
-  outputStream.write(
-    `<svg width="256" height="256">
-      ${flatMatrix.join("\n")}
-      </svg>`
-  );
+  outputStream.write(flatMatrix.join("\n"));
 
   //   add CSS:
   /*
